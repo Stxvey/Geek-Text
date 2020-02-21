@@ -3,6 +3,10 @@ var bcrypt = require('bcryptjs')
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: null
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -35,19 +39,18 @@ module.exports = (sequelize, DataTypes) => {
             }
           });
         }
-      },
-      instanceMethods: {
-        generateHash(password) {
-          return bcrypt.hash(password, bcrypt.genSaltSync(8))
-        },
-        validPassword(password){
-          return bcrypt.compare(password, this.password)
-        }
       }
   });
   //Here's where you define any fk
   User.associate = function(models) {
     // associations can be defined here
   };
+  //TODO: replace with async because it is more efficient
+  User.prototype.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.password)
+  }
+  User.prototype.generateHash = function(password) {
+    return bcrypt.hash(password, bcrypt.genSaltSync(8))
+  }
   return User;
 };

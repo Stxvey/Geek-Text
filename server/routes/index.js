@@ -1,21 +1,13 @@
 const router = require('express').Router();
-const User = require('../models').User
 
-require('dotenv').config();
+//Import controllers to handle requests
+const userController = require('../controllers/user')
+const bookController = require('../controllers/book')
 
 //Book Routes
-router.get('/books', (req, res) => {
-    res.send('Hello from books!')
-    // https.get(`https://www.googleapis.com/books/v1/volumes?q=calculus&key=${process.env.GOOGLE_API_KEY}`, (res) => {
-    //     console.log(resp.statusCode)
-    // })
-})
+router.get('/books/all', bookController.getAllBooks)
 
 //User Routes
-router.get('/user', async (req, res) => {
-    res.send('Hello from user!')
-    const carolina = await User.create({firstName: "Carolina", lastName: "Duran", email: "Cdura036@fiu.edu", password: "password"})
-    console.log('Carolinas auto gen id is ', carolina.id)
-})
-
+router.post('/user/register', userController.register)
+router.post('/user/login', userController.login)
 module.exports = router

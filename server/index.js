@@ -4,7 +4,8 @@ const passport = require('passport')
 const session = require('express-session')
 require('dotenv').config();
 
-var passportConfig = require('./config/passport')
+const passportConfig = require('./config/passport')
+// passportConfig(passport)
 
 const app = express()
 app.use(bodyParser.json())
