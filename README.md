@@ -20,3 +20,5 @@ While in the server directory, you will need to create your .env variables. .env
 
 This will create your env file. Here you will need to create a few variables. You will need to retrieve an API key from Google to use their Books v1 API. Store this key in this file.
 Then, you need to create a database schema using MySQL Workbench. You will need to copy that name into this file. You will also need to provide a username and password to access this database, all of this is stored in .env .
+
+
