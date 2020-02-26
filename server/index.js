@@ -1,13 +1,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const passport = require('passport')
 const session = require('express-session')
+const passport = require('passport')
 require('dotenv').config();
+const sessionStore = require('./models').sessionStore
 
-const passportConfig = require('./config/passport')
-// passportConfig(passport)
-
+const initialize = require('./config/passport')
+initialize(passport)
 const app = express()
+app.use(session({
+    secret: 'ImReallyDepressedTbh',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(bodyParser.json())
 
 
@@ -15,13 +23,10 @@ app.use(bodyParser.json())
 const indexRouter = require('./routes')
 app.use('/', indexRouter)
 
-//Passport inits
-app.use(passport.initialize())
-app.use(passport.session())
 
-//Only run this if you alter a table, this will CREATE TABLE IF NOT EXISTS
+//Only run this if you alter a table, this will CREATE TABLE and DROP a table if it already exists
 // const models = require('./models')
-// models.sequelize.sync().then(console.log('creating tables'))
+// models.sequelize.sync({force: true}).then(console.log('creating tables'))
 
 
 app.listen(3001, ()=> {console.log('listening on port 3001')})

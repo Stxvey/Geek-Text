@@ -10,4 +10,6 @@ router.get('/books/all', bookController.getAllBooks)
 //User Routes
 router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
+
+
 module.exports = router

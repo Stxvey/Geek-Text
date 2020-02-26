@@ -1,31 +1,38 @@
-const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcryptjs')
-const models = require('../models')
+const User = require('../models').User
 
-passport.use(new LocalStrategy(function(username, password, done) {
-    models.User
-    .find({where: {username: username}})
-    .then(function(user) {
-        if(!user) {
-            return done(null, false, {message: 'Username not found'})
-        }
-        models.User.comparePassword(password, user.password, function(err, isMatch) {
-            if (err) {
-                return done(err)
-            }
-            if(isMatch) {
-                return done(null, user)
+function initialize(passport) {
+    passport.use(new LocalStrategy({
+        usernameField: 'email'
+    },
+        function(email, password, done) {
+            User.findOne({where: {email: email}})
+            .then(user => {
+                if(user){
+                    if(user.validatePassword(password)){
+                        console.log('successful login')
+                        return done(null, user)
+                    } else {
+                        return done(null, false, {message: 'Incorrect Password.'})
+                    }
+                } else {
+                    return done(null, false, {message: "No username found"})
+                }
+            })
+    }))
+    passport.serializeUser(function(user, done) {
+        done(null, user.id)
+    })
+    passport.deserializeUser((id, done) => {
+        User.findOne({where: {id: id}}).then(function(user) {
+            if(user) {
+                console.log(user)
+                done(null, user.get())
             } else {
-                return done(null, false, {message: 'Invalid password'})
+                done(user.errors, null)
             }
         })
     })
-    .catch(function(err) {
-        done(err)
-    })
-}))
+}
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id)
-})
+module.exports = initialize

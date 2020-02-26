@@ -3,7 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const session = require('express-session')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 require('dotenv').config();
 const db = {};
 
@@ -28,8 +29,11 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.sessionStore = new SequelizeStore({
+  db: sequelize
+})
 
 module.exports = db;
