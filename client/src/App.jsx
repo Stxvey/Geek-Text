@@ -5,8 +5,8 @@ import BookContainer from './components/BookContainer'
 function App() {
   return (
     <div className="container">
-      <BookContainer />
       <Navbar />
+      <BookContainer />
     </div>
   );
 }

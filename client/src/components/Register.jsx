@@ -26,7 +26,7 @@ function Register() {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         }
-        if(password != confirmPassword){
+        if(password !== confirmPassword){
             setErrorMessage("Passwords do not match")
             setShow(true)
         } else {
