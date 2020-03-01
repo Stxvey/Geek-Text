@@ -21,7 +21,7 @@ userController.register = async (req, res) => {
     })
     .catch(function(e) {
         console.log(e)
-        res.send('user already created')
+        res.status(400).send('Email has already been taken')
     })
 }
 
@@ -42,6 +42,7 @@ userController.register = async (req, res) => {
 // }
 
 userController.login = passport.authenticate('local', {
+    successRedirect: '/',
     failureRedirect: '/login'})
 
 module.exports = userController
