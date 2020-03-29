@@ -5,7 +5,23 @@ const passport = require('passport')
 
 const userController = {}
 
-
+userController.findUser = (req, res) => {
+    User.findOne({where: {id: req.session.passport.user}})
+     .then(user => {
+         if (user) {
+             const {firstName, lastName, email} = user.dataValues
+             const data = {
+                 firstName,
+                 lastName,
+                 email
+             }
+             res.send(data)
+         } else {
+             console.log('user not found')
+         }
+     })
+    console.log(req.session)
+}
 userController.register = async (req, res) => {
     console.log(req.body)
     const hashedPass = await bcrypt.hash(req.body.password, 8)
@@ -21,27 +37,11 @@ userController.register = async (req, res) => {
     })
     .catch(function(e) {
         console.log(e)
-        res.send('user already created')
+        res.status(400).send('Email has already been taken')
     })
 }
 
-// userController.login = (req, res) => {
-//     User.findOne({where: {username: req.body.username}})
-//     .then(user => {
-//         if(user){
-//             const validation = user.validatePassword(req.body.password)
-//             if (validation){
-//                 res.send('correct pass')
-//             } else {
-//                 res.send('incorrect pass')
-//             }
-//         } else {
-//             res.send('User could not be found')
-//         }
-//     })
-// }
-
 userController.login = passport.authenticate('local', {
+    successRedirect: '/',
     failureRedirect: '/login'})
-
 module.exports = userController

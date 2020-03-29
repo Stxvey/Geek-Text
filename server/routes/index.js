@@ -8,6 +8,7 @@ const bookController = require('../controllers/book')
 router.get('/books/all', bookController.getAllBooks)
 
 //User Routes
+router.get('/user/findUser', userController.findUser)
 router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
 

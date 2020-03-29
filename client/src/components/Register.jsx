@@ -1,8 +1,9 @@
 import React , {useState} from 'react'
 import {Button, Form, Container, NavbarBrand, Alert} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 function Register() {
+    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -30,7 +31,15 @@ function Register() {
             setErrorMessage("Passwords do not match")
             setShow(true)
         } else {
-            fetch('/user/register', requestOptions).then(res => console.log(res))
+            fetch('/user/register', requestOptions)
+            .then(res => {
+                if (res.status === 200){
+                    history.push('/login')
+                } else {
+                    setShow(true)
+                    setErrorMessage('Email has already been taken')
+                }
+            })
         }
     }
 

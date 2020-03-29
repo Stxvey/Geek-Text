@@ -1,10 +1,13 @@
 import React , {useState} from 'react'
-import {Button, Form, Container, NavbarBrand} from 'react-bootstrap'
+import {Alert, Button, Form, Container, NavbarBrand} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
+    const [show, setShow] = useState(false)
+    const [variant, setVariant] = useState("")
 
     function handleSubmit(e){
         e.preventDefault()
@@ -13,7 +16,24 @@ function Login() {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
         }
-        fetch('/user/login', requestOptions).then(res => res.json()).then(console.log('success'))
+        fetch('/user/login', requestOptions)
+        .then(res => {
+            /*
+
+            */
+           console.log(res)
+            if (res.status === 200) {
+                setShow(true)
+                setVariant('success')
+                setErrorMessage("Logged in")
+            } else {
+                setShow(true)
+                setVariant('danger')
+                setErrorMessage("We could not find a user with those credentials")
+            }
+        }).catch(err => {
+
+        })
     }
     return(
         <>
@@ -21,6 +41,9 @@ function Login() {
                 <NavbarBrand className="d-flex justify-content-center">
                     <Link to="/"> GeekText</Link>
                 </NavbarBrand>
+                <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                    {errorMessage}
+                </Alert>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label> Email Address</Form.Label>
