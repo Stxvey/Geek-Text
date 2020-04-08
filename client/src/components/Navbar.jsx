@@ -10,9 +10,12 @@ function NavBar() {
             <Navbar.Brand>
                <Link to="/">GeekText</Link>
             </Navbar.Brand>
-            <Nav className="d-flex justify-content-end">
+            <Nav className="d-flex justify-content-end max-auto">
                 <Nav.Item>
                     <Link to="/login"> Login </Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Link to="/cart"> Cart </Link>
                 </Nav.Item>
             </Nav>
         </Navbar>

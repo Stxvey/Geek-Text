@@ -23,7 +23,6 @@ userController.findUser = (req, res) => {
     console.log(req.session)
 }
 userController.register = async (req, res) => {
-    console.log(req.body)
     const hashedPass = await bcrypt.hash(req.body.password, 8)
     User.create({
         username: req.body.username,
