@@ -4,7 +4,8 @@ import App from './App'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
-
+import Cart from './components/Cart'
+import BookDetails from './components/BookDetails'
 
 const isAuth = true
 
@@ -27,6 +28,8 @@ const AppRouter = () => (
             <Route path="/" component={App} exact />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/bookdetails" component={BookDetails} />
             <PrivateRoute path="/profile" component={Profile} />
         </Switch>
     </BrowserRouter>

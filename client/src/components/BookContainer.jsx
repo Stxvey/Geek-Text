@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Container, Form, Button } from 'react-bootstrap'
 import BookCard from './BookCard'
 
@@ -6,9 +6,19 @@ function BookContainer() {
 
     const [searchTerm, setSearchTerm] = useState("")
     const [bookList, setBookList] = useState([])
+
+
     function searchForBooks(e){
         //TODO: check to make sure search isn't empty
-        fetch(`/books/all/?title=${searchTerm}`).then(res => {return res.json()}).then(data => setBookList(data.items))
+        fetch('/books/all/').then(res => {return res.json()}).then(data => getTenBooks(data))
+    }
+    useEffect(() => {
+        searchForBooks() 
+     }, [])
+    function getTenBooks(data){
+        var res = []
+        res = data.sort(() => Math.random() - Math.random()).slice(0, 10)
+        setBookList(res)
     }
     const gridStyle = {
         display: 'grid',
