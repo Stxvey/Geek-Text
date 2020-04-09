@@ -43,4 +43,5 @@ userController.register = async (req, res) => {
 userController.login = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'})
+    
 module.exports = userController
