@@ -2,6 +2,10 @@ import React, {useState} from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
+/*
+    TODO:
+    Get rid of login button when a user is logged on
+*/
 function NavBar() {
     const [isLoggedIn, setIsLoggedIn] = useState("")
 

@@ -18,6 +18,9 @@ function BookCard(props) {
             pathname: '/cart',
             state: {cart: props.title}
         })
+        fetch('/user/addBook')
+        .then(res => {return res.json()})
+        .then(data => console.log(data))
     }
     return (
         <Card style={{ width: '18rem' }}>

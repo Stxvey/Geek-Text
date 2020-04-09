@@ -8,9 +8,10 @@ cartController.getCart = async (req, res) => {
         User.findOne({where: {id: req.session.passport.user}})
         .then(user => {
             if(user) {
-                Cart.findOne({where: {id: user.dataValues.id}})
+                Cart.findAll({where: {id: user.dataValues.id}})
                 .then(cart => {
                     if(cart) {
+                        print(cart)
                         //cart was found
                     } else {
                         //User has nothing in their cart

@@ -5,9 +5,12 @@ module.exports = (sequelize, DataTypes) => {
         user_id: {
             type: DataTypes.INTEGER
         },
-        cartItems: {
-            type: DataTypes.JSON
+        book_id: {
+            type: DataTypes.INTEGER
         }
+    }, {
+        freezeTableName: true,
+        timestamps: false
     })
     return Cart
 }

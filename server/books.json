@@ -17,8 +17,8 @@
     "pageCount": 592,
     "publishedDate": { "$date": "2011-01-14T00:00:00.000-0800" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson2.jpg",
-    "shortDescription": "Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond \"Hello Android,\" this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
-    "longDescription": "When it comes to mobile apps, Android can do almost anything   and with this book, so can you! Android runs on mobile devices ranging from smart phones to tablets to countless special-purpose gadgets. It's the broadest mobile platform available.    Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond \"Hello Android,\" this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
+    "shortDescription": "Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond Hello Android, this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
+    "longDescription": "When it comes to mobile apps, Android can do almost anything   and with this book, so can you! Android runs on mobile devices ranging from smart phones to tablets to countless special-purpose gadgets. It's the broadest mobile platform available.    Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond Hello Android, this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
     "status": "PUBLISH",
     "authors": ["W. Frank Ableson", "Robi Sen"],
     "categories": ["Java"]
@@ -3057,7 +3057,7 @@
     "shortDescription": "This unique collector's volume includes every daily strip from November 17, 1997 to November 16, 2007. Many of the cartoons are annotated with comments from UserFriendly artist and creator JD    Illiad    Frazer.",
     "longDescription": "For over 10 years, UserFriendly has been entertaining geeks of all stripes with its daily dose of humor, social commentary, and occasionally absurd observations about the world of technology. Loyal UserFriendly fans   UFies   have been asking for a Big Book of UserFriendly that assembles the first decade of UserFriendly   almost 4,000 individual comics   in a single volume. Manning has teamed up with the folks at UserFriendly.Org to bring you exactly that!    This unique collector's volume includes every daily strip from November 17, 1997 to November 16, 2007. Many of the cartoons are annotated with comments from UserFriendly artist and creator JD    Illiad    Frazer.",
     "status": "PUBLISH",
-    "authors": ["JD \"Illiad\" Frazer"],
+    "authors": ["JD Illiad Frazer"],
     "categories": ["Miscellaneous"]
   },
   {
@@ -3237,7 +3237,7 @@
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/cummins.jpg",
     "status": "PUBLISH",
     "authors": ["Holly Cummins", "Timothy Ward"],
-    "categories": []
+    "categories": ["Java"]
   },
   {
     "title": "Ext JS in Action, Second Edition",

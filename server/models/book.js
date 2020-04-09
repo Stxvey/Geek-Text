@@ -27,6 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         price: {
             type: DataTypes.DOUBLE
+        },
+        thumbnail: {
+            type: DataTypes.STRING
+        },
+        publisher: {
+            type: DataTypes.STRING
+        },
+        publishedDate: {
+            type: DataTypes.STRING
         }
     }, {
         freezeTableName: true,
