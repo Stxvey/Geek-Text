@@ -23,8 +23,8 @@ function BookDetails() {
         <>
             <Navbar />
             <Container>
-                <Image src={book.thumbnailUrl} />
-                <h2>{book.authors[0]}</h2>
+                <Image src={book.thumbnail} />
+                <h2>{book.author}</h2>
                 <p>{description()}</p>
             </Container>
         </>

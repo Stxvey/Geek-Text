@@ -9,11 +9,13 @@ const path = require('path')
 const bookController = {}
 
 bookController.getAllBooks = (req, res) => {
-        fs.readFile(path.join(__dirname, '../books.json'), (err, json) => {
-            if(err) throw err;
-            let obj = JSON.parse(json)
-            res.json(obj)
-        })
+        // fs.readFile(path.join(__dirname, '../books.json'), (err, json) => {
+        //     if(err) throw err;
+        //     let obj = JSON.parse(json)
+        //     res.json(obj)
+        // })
+        resp = {}
+        Book.findAll({limit: 10}).then(data => res.json(data))
 }
 
 

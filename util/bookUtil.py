@@ -41,7 +41,6 @@ with open(bookFile) as json_file:
     for book in data:
         item = Book(book.get('title'), book.get('isbn'))
         item.author = book.get('authors')[0]
-        #check if item has thumbnailUrl
         if "thumbnailUrl" in book:
             item.thumbnail = book.get("thumbnailUrl")
         if "categories" in book:

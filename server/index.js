@@ -25,8 +25,8 @@ app.use('/', indexRouter)
 
 
 //Only run this if you alter a table, this will CREATE TABLE and DROP a table if it already exists
-const models = require('./models')
-models.sequelize.sync({force: true}).then(console.log('creating tables'))
+// const models = require('./models')
+// models.sequelize.sync({force: true}).then(console.log('creating tables'))
 
 
 app.listen(3001, ()=> {console.log('Listening on port 3001')})
