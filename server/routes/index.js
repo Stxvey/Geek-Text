@@ -16,4 +16,8 @@ router.post('/user/login', userController.login)
 //Cart Routes
 router.post('/cart/findCart', cartController.addItem)
 
+//Rating Routes
+router.get('/book/rating', bookController.rating)
+router.post('/book/rating', bookController.rateBook)
+
 module.exports = router
