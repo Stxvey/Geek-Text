@@ -13,10 +13,15 @@ router.get('/books/all', bookController.getAllBooks)
 router.get('/user/findUser', userController.findUser)
 router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
-router.get('/user/wishlist', wishlistController.findWishList)
+router.get('/user/wishlist', wishlistController.findWishlist)
 
 //Cart Routes
 router.post('/cart/findCart', cartController.addItem)
+
+//Wishlist Routes
+router.post('/user/wishlist', wishlistController.addItem)
+router.post('/wishlist/moveItem', wishlistController.moveItem)
+router.delete('/wishlist/item', wishlistController.removeItem)
 
 
 module.exports = router

@@ -4,8 +4,6 @@ const fetch = require('node-fetch')
 const fs = require('fs')
 const path = require('path')
 
-
-
 const bookController = {}
 
 bookController.getAllBooks = (req, res) => {
