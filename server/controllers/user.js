@@ -6,21 +6,18 @@ const passport = require('passport')
 const userController = {}
 
 userController.findUser = (req, res) => {
-    User.findOne({where: {id: req.session.passport.user}})
+    User.findOne({where: {id: req.session.passport.user}, raw:true})
      .then(user => {
          if (user) {
-             const {firstName, lastName, email} = user.dataValues
-             const data = {
-                 firstName,
-                 lastName,
-                 email
-             }
-             res.send(data)
+             res.send(user)
          } else {
              console.log('user not found')
          }
      })
-    console.log(req.session)
+     .catch(e => {
+         console.log("can't find user")
+     })
+    
 }
 userController.register = async (req, res) => {
     const hashedPass = await bcrypt.hash(req.body.password, 8)
@@ -44,4 +41,9 @@ userController.login = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'})
     
+userController.logout = (req, res) => {
+    req.session.destroy(() => {
+        res.send('session has been destroyed')
+    })
+}
 module.exports = userController
