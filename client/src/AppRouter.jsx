@@ -6,7 +6,7 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import Cart from './components/Cart'
 import BookDetails from './components/BookDetails'
-
+import Wishlist from './components/Wishlist'
 const isAuth = true
 
 const PrivateRoute = ({component: Component, ...rest}) => {
@@ -30,6 +30,7 @@ const AppRouter = () => (
             <Route path="/register" component={Register} />
             <Route path="/cart" component={Cart} />
             <Route path="/bookdetails" component={BookDetails} />
+            <Route path="/wishlist" component={Wishlist} />
             <PrivateRoute path="/profile" component={Profile} />
         </Switch>
     </BrowserRouter>

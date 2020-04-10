@@ -1,17 +1,19 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    const Cart = sequelize.define('Cart' , {
+    const Wishlist = sequelize.define('Wishlist' , {
         user_id: {
             type: DataTypes.INTEGER
         },
         book_id: {
+            type: DataTypes.INTEGER
+        }, 
+        whichList: {
             type: DataTypes.INTEGER
         }
     }, {
         freezeTableName: true,
         timestamps: false
     })
-    
-    return Cart
+    return Wishlist
 }
