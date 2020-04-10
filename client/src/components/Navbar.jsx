@@ -21,6 +21,9 @@ function NavBar() {
                 <Nav.Item>
                     <Link to="/cart"> Cart </Link>
                 </Nav.Item>
+                <Nav.Item>
+                    <Link to="/wishlist"> Wishlist </Link>
+                </Nav.Item>
             </Nav>
         </Navbar>
     )

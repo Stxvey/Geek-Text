@@ -13,12 +13,13 @@ function BookCard(props) {
         })
     }
 
-    function sendToCart() {
-        history.push({
-            pathname: '/cart',
-            state: {cart: props.title}
-        })
-        fetch('/user/addBook')
+    function sendToCart(id) {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({book_id: id})
+        }
+        fetch('/user/addBook', requestOptions)
         .then(res => {return res.json()})
         .then(data => console.log(data))
     }
@@ -30,7 +31,10 @@ function BookCard(props) {
                 <Card.Text>
                     {props.pageCount}
                 </Card.Text>
-                <i class="fas fa-cart-plus" onClick={sendToCart}></i>
+                <Card.Text>
+                    {props.shortDescription}
+                </Card.Text>
+                <i class="fas fa-cart-plus" onClick={() => sendToCart(props.id)}></i>
                 <Button variant="primary" onClick={showBookDetails}>More details</Button>
             </Card.Body>
         </Card>
