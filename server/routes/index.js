@@ -10,6 +10,10 @@ const creditcardController = require('../controllers/creditcard')
 
 //Book Routes
 router.get('/books/all', bookController.getAllBooks)
+router.get('/book/getTop', bookController.getTop)
+router.post('/book/getGenre', bookController.getGenre)
+router.get('/book/getRating', bookController.getRating)
+router.post('/book/getSort', bookController.getSort)
 
 //User Routes
 router.get('/user/findUser', userController.findUser)

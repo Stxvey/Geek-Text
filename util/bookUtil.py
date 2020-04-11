@@ -13,7 +13,7 @@ cnx = mysql.connector.connect(
     host="localhost",
     port=3306,
     user="geektext",
-    password="Steve2246!",
+    password="Popeye1315",
     database="geektext"
 )
 cur = cnx.cursor()
