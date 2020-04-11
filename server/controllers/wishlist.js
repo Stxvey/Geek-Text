@@ -54,7 +54,6 @@ wishlistController.moveToShoppingCart = (req, res) => {
 
 wishlistController.findWishlist = (req, res) => {
     const userId = req.session.passport.user
-    // const userId = req.body.userid
     var resp = []
     Wishlist.findAll({where: {user_id: userId}, raw: true})
     .then(wishlistItems => {

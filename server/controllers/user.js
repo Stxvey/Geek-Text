@@ -37,6 +37,25 @@ userController.register = async (req, res) => {
     })
 }
 
+userController.update = (req, res) => {
+    const userId = req.session.passport.user
+    const {firstName, lastName, email, username} = req.body
+    User.findOne({where: {id: userId}})
+    .then(user => {
+        user.update({
+            firstName,
+            lastName,
+            email,
+            username
+        })
+        .then(
+            res.send('success')
+        )
+    }).catch(e => {
+        
+    })
+}
+
 userController.login = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'})

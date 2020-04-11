@@ -6,6 +6,7 @@ function Profile(props) {
     const [addresses, setAddresses] = useState([])
     const [cards, setCards] = useState([])
     const [user, setUser] = useState({})
+    const [updateFormActive, setUpdateFormActive] = useState(false)
     const [addAddressFormActive, setAddAddressFormActive] = useState(false)
     const [addCardFormActive, setAddCardFormActive] = useState(false)
     useEffect(() => {
@@ -14,6 +15,68 @@ function Profile(props) {
         setUser(props.location.state.user)
     }, [])
 
+    function showUpdateInfo(){
+        const info = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username
+        }
+        function handleFirstNameChange(e){
+            info.firstName = e.target.value
+        }
+        function handleLastNameChange(e){
+            info.lastName = e.target.value
+        }
+        function handleEmailChange(e){
+            info.email = e.target.value
+        }
+        function handleUsernameChange(e){
+            info.username = e.target.value
+        }
+        function handleSubmit(e){
+            e.preventDefault()
+            const requestOptions = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(info)
+            }
+            fetch('/user/update', requestOptions)
+            .then(res => {
+                if(res.status === 200)
+                setUpdateFormActive(false)
+            })
+        }
+        if(updateFormActive){
+            return(
+                <Form>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="formfirstName">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control onChange={(e) => handleFirstNameChange(e)} defaultValue={info.firstName}/>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formLastName">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control onChange={(e) => handleLastNameChange(e)} defaultValue={info.lastName}/>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control onChange={(e) => handleEmailChange(e)} defaultValue={info.email}/>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formUsername">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control onChange={(e) => handleUsernameChange(e)} defaultValue={info.username}/>
+                        </Form.Group>
+                    </Form.Row>
+                    <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
+                        Update Profile
+                    </Button>
+                </Form>
+            )
+        } else {
+            return
+        }
+    }
     function showAddAddress(){
         const newAddress = {}
         function handleAddressChange(e){
@@ -166,7 +229,10 @@ function Profile(props) {
                 <li>First name: {user.firstName}</li>
                 <li>Last name: {user.lastName}</li>
                 <li>Email Address: {user.email}</li>
+                <li>Username: {user.username}</li>
             </ul>
+            <Button variant="outline-secondary" onClick={() => setUpdateFormActive(true)}>Update Info</Button>
+            {showUpdateInfo()}
             <h1>Addresses</h1>
             <i class="fas fa-plus" onClick={() => setAddAddressFormActive(true)}></i> Add Address
             <Table size="sm">

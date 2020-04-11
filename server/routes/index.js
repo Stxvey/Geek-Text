@@ -7,6 +7,7 @@ const cartController = require('../controllers/cart')
 const wishlistController = require('../controllers/wishlist')
 const addressController = require('../controllers/address')
 const creditcardController = require('../controllers/creditcard')
+const purchaseController = require('../controllers/purchase')
 
 //Book Routes
 router.get('/books/all', bookController.getAllBooks)
@@ -17,6 +18,7 @@ router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
 router.get('/user/wishlist', wishlistController.findWishlist)
 router.get('/user/logout', userController.logout)
+router.post('/user/update', userController.update)
 
 //Cart Routes
 router.post('/cart/findCart', cartController.addItem)
@@ -33,6 +35,10 @@ router.post('/user/addAddress', addressController.addAddress)
 //Credit card Routes
 router.post('/user/addCard', creditcardController.addCreditcard)
 router.get('/user/cards', creditcardController.findAll)
+
+//Purchase Routes
+router.get('/user/hasPurchased', purchaseController.hasPurchased)
+router.post('/user/purchaseBook', purchaseController.purchaseBook)
 
 
 module.exports = router

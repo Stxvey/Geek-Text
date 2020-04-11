@@ -8,18 +8,6 @@ function BookDetails() {
     const history = useHistory()
     const book = history.location.state.book
 
-    function sendRating(e){
-        e.preventDefault()
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({book_id: book.id, rating: 5})
-        }
-        fetch('/book/rating', requestOptions)
-        .then(res => {
-            console.log(res)
-        })
-    }
     function addToWishlist(whichList){
         const requestOptions = {
             method: 'POST',
@@ -32,11 +20,16 @@ function BookDetails() {
 
     return(
         <>
-            <Navbar />
+ 
             <Container>
+                <Navbar />
                 <Image src={book.thumbnail} />
                 <h2>{book.author}</h2>
-                <Button onClick={sendRating}>Rate 5 stars</Button>
+                <p>{book.longDescription}</p>
+                <strong>Price: </strong>${book.price}<br />
+                <strong>Genre: </strong>{book.genre}<br/>
+                <strong>Publisher: </strong>{book.publisher}<br/>
+                <strong>Release Date: </strong>{book.publishedDate}<br/>
                 <Button onClick={() => addToWishlist(1)}>Add to Wishlist 1</Button>
                 <Button onClick={() => addToWishlist(2)}>Add to Wishlist 2</Button>
                 <Button onClick={() => addToWishlist(3)}>Add to Wishlist 3</Button>

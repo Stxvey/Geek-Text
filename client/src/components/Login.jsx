@@ -18,10 +18,6 @@ function Login() {
         }
         fetch('/user/login', requestOptions)
         .then(res => {
-            /*
-
-            */
-           console.log(res)
             if (res.status === 200) {
                 setShow(true)
                 setVariant('success')
