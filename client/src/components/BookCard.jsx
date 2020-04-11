@@ -19,7 +19,7 @@ function BookCard(props) {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({book_id: id})
         }
-        fetch('/user/addBook', requestOptions)
+        fetch('/cart/additem', requestOptions)
         .then(res => {return res.json()})
         .then(data => console.log(data))
     }

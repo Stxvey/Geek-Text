@@ -5,9 +5,11 @@ import {Link, BrowserRouter} from 'react-router-dom'
 function NavBar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState({})
+    const [cartList, setCartList] = useState(0)
 
     useEffect(() => {
         getUser()
+        getCart()
     }, [])
     function getUser(){
         fetch('/user/findUser')
@@ -23,11 +25,17 @@ function NavBar() {
             setUser(user)
         })
     }
+    function getCart(){
+        fetch('/cart/findCart')
+        .then(res => {return res.json()})
+        .then(data => setCartList(data.length))
+    }
     function logout(){
         fetch('/user/logout')
         .then(res => res.json())
         .catch(e => console.log(e))
     }
+    
     function LoggedInView(){
 
         return (
@@ -41,7 +49,7 @@ function NavBar() {
                     <Link to={{pathname: "/profile", state: {user:user}}}>{user.firstName}!</Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Link to="/cart"> Cart </Link>
+                    <Link to="/cart"> Cart {cartList}</Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Link to="/wishlist"> Wishlist </Link>

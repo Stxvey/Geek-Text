@@ -11,6 +11,10 @@ const purchaseController = require('../controllers/purchase')
 
 //Book Routes
 router.get('/books/all', bookController.getAllBooks)
+router.get('/book/getTop', bookController.getTop)
+router.post('/book/getGenre', bookController.getGenre)
+router.get('/book/getRating', bookController.getRating)
+router.post('/book/getSort', bookController.getSort)
 
 //User Routes
 router.get('/user/findUser', userController.findUser)
@@ -21,7 +25,9 @@ router.get('/user/logout', userController.logout)
 router.post('/user/update', userController.update)
 
 //Cart Routes
-router.post('/cart/findCart', cartController.addItem)
+router.get('/cart/findCart', cartController.getCart)
+router.delete('/cart/deleteitem', cartController.removeItem)
+router.post('/cart/additem', cartController.addItem)
 
 //Wishlist Routes
 router.post('/user/wishlist', wishlistController.addItem)
