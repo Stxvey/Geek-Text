@@ -19,7 +19,8 @@ function BookDetails() {
             return book.longDescription
         }
     }
-    return(
+
+        return(
         <>
             <Navbar />
             <Container>

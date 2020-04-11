@@ -14,6 +14,9 @@ router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
 
 //Cart Routes
-router.post('/cart/findCart', cartController.addItem)
+router.get('/cart/findCart', cartController.getCart)
+router.delete('/cart/deleteitem', cartController.removeItem)
+router.post('/cart/additem', cartController.addItem)
+router.get('/cart/getCartCount', cartController.getCartSumCount)
 
 module.exports = router

@@ -1,46 +1,70 @@
-const User = require('../models').User
+const Book = require('../models').Book
 const Cart = require('../models').Cart
+const CartSumCount = require('../models').CartSumCount
 
 const cartController = {}
 
-cartController.getCart = async (req, res) => {
-    try {
-        User.findOne({where: {id: req.session.passport.user}})
-        .then(user => {
-            if(user) {
-                Cart.findOne({where: {id: user.dataValues.id}})
-                .then(cart => {
-                    if(cart) {
-                        //cart was found
-                    } else {
-                        //User has nothing in their cart
-                    }
-                })
-            }
+cartController.getCart = (req, res) => {
+    const userId = req.session.passport.user
+    // const userId = req.body.userid
+    var resp = []
+    Cart.findAll({where: {user_id: userId}, raw: true})
+    .then(cartItems => {
+        cartItems.forEach(item => {
+            Book.findOne({where: {id: item.book_id}, raw:true})
+            .then(book => {
+                resp.push(book)
+            })
         })
-    } catch(e) {
-        console.log(e)
-    }
+        setTimeout(() => {
+            res.json(resp)
+        }, 1000)
+    })
+    
 }
 
-cartController.addItem = () => {
-    try {
-        User.findOne({where: {id: req.session.passport.user}})
-        .then(user => {
-            if(user) {
-                Cart.findOne({where: {id: user.dataValues.id}})
-                .then(cart => {
-                    if(cart) {
-                        //cart was found
-                    } else {
-                        //User has nothing in their cart
-                    }
-                })
-            }
+cartController.getCartSumCount = (req, res) => {
+    const userId = req.session.passport.user
+    // const userId = req.body.userid
+    var resp = []
+    CartSumCount.findAll({where: {user_id: userId}, raw: true})
+    .then(cartItems => {
+        cartItems.forEach(item => {
+            Book.findOne({where: {id: item.book_id}, raw:true})
+            .then(book => {
+                resp.push(book)
+            })
         })
-    } catch(e) {
-        console.log(e)
-    }
+        setTimeout(() => {
+            res.json(resp)
+        }, 1000)
+    })
+    
 }
 
+cartController.addItem = (req, res) => {
+    console.log('we are HERE')
+    const userId = req.session.passport.user
+    const bookId = req.body.book_id
+    Cart.create({
+        user_id: userId,
+        book_id: bookId
+    })
+    .then(res.send('success!'))
+    .catch(e => console.log(e))
+}
+
+cartController.removeItem = (req, res) => {
+    const userId = req.session.passport.user
+    const bookId = req.body.book_id
+    Cart.findOne({where: {user_id: userId, book_id: bookId}})
+    .then(entry => {
+        entry.destroy()
+        res.json({})
+    })
+    .catch(e => {
+        console.log('i did not find the entry')
+        res.send('could not find the entry')
+    })
+}
 module.exports = cartController
