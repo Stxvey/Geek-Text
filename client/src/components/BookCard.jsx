@@ -10,9 +10,12 @@ function BookCard(props) {
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={props.volumeInfo.imageLinks.thumbnail} />
             <Card.Body>
-                <Card.Title>{props.volumeInfo.title}</Card.Title>
+                <Card.Title><strong>Title: </strong>{props.title}</Card.Title>
+                <Card.Text><strong>by: </strong>{props.author}</Card.Text>
+                <Card.Text><strong>No. Pages: </strong>{props.pageCount}
+                </Card.Text>
                 <Card.Text>
-                    {props.volumeInfo.description}
+                    <strong>Short Description: </strong>{props.shortDescription}
                 </Card.Text>
                 <Button variant="primary" onClick={showProps}>Go somewhere</Button>
             </Card.Body>

@@ -18,5 +18,18 @@ bookController.getAllBooks = async (req, res) => {
         }
 }
 
+bookController.getByAuthor = (req, res) => {
+        console.log(req.params.author)
+        resp = {}
+        Book.findAll({
+                where: {
+                  author: req.params.author
+                },
+                raw: true
+              }).then(book => {
+                      res.json(book)
+              })
+      
+}
 
 module.exports = bookController

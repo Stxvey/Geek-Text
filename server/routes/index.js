@@ -11,5 +11,6 @@ router.get('/books/all', bookController.getAllBooks)
 router.post('/user/register', userController.register)
 router.post('/user/login', userController.login)
 
-
+//Book Details 
+router.get('/books/:author', bookController.getByAuthor)
 module.exports = router
