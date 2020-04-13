@@ -45,6 +45,8 @@ router.get('/user/cards', creditcardController.findAll)
 //Purchase Routes
 router.get('/user/hasPurchased', purchaseController.hasPurchased)
 router.post('/user/purchaseBook', purchaseController.purchaseBook)
+//BookDetails 
+router.get('/books/:author', bookController.getByAuthor)
 
 
 module.exports = router
