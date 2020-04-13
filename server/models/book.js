@@ -36,7 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         publishedDate: {
             type: DataTypes.STRING
-        }
+        }, 
+        biography: {
+            type: DataTypes.TEXT
+        },
     }, {
         freezeTableName: true,
         timestamps: false
