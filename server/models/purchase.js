@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         book_id: {
             type: DataTypes.INTEGER
+        }, 
+        rating: {
+            type: DataTypes.INTEGER
         }
     }, {
         freezeTableName: true,

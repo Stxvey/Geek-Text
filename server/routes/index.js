@@ -43,8 +43,9 @@ router.post('/user/addCard', creditcardController.addCreditcard)
 router.get('/user/cards', creditcardController.findAll)
 
 //Purchase Routes
-router.get('/user/hasPurchased', purchaseController.hasPurchased)
+router.get('/user/hasPurchased/:bookId', purchaseController.hasPurchased)
 router.post('/user/purchaseBook', purchaseController.purchaseBook)
+router.post('/user/rateBook', purchaseController.rate)
 //BookDetails 
 router.get('/books/:author', bookController.getByAuthor)
 
