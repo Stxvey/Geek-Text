@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Navbar from './Navbar'
-import {Table} from 'react-bootstrap'
+import {Button, Table} from 'react-bootstrap'
 
 function Cart() {
 
@@ -42,6 +42,17 @@ function Cart() {
         getCart()
         const updatedArray = [...cart]
         setCart(updatedArray)
+    }
+    function purchaseBook(){
+        const bookId = cart[0].id
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({bookId: bookId})
+        }
+        fetch('/user/purchaseBook', requestOptions)
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
     }
 
     return(
@@ -94,7 +105,7 @@ function Cart() {
                             <th></th>
                         </tr>
                     </thead>
-                    
+                    <Button onClick={() => purchaseBook()}>Purchase</Button>
             </Table>
             
   
