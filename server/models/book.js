@@ -36,7 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         },
         publishedDate: {
             type: DataTypes.STRING
-        }
+        }, 
+        biography: {
+            type: DataTypes.TEXT
+        },
+        isTopSeller: {
+            type: DataTypes.BOOLEAN
+        },
+        rate: {
+            type: DataTypes.INTEGER
+        },
     }, {
         freezeTableName: true,
         timestamps: false

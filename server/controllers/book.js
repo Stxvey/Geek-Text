@@ -1,13 +1,14 @@
 //TODO: Place books found into db
 const Book = require('../models').Book
-const fetch = require('node-fetch')
-const fs = require('fs')
-const path = require('path')
+const { Sequelize, Op } = require("sequelize");
 
 const bookController = {}
 bookController.getTop = (req, res) => {
         Book.findAll({
                 limit:20,
+                where: {
+                        isTopSeller: 1
+                },
                 raw: true
         })
         .then(booksWithTop => {
@@ -33,7 +34,9 @@ bookController.getRating = (req, res) => {
         Book.findAll({
                 limit:20,
                 where: {
-                        [rate.gte]: i
+                        rate: {
+                                [Op.gte]: i
+                              }
                 },
                 raw: true
         })

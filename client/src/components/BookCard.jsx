@@ -34,6 +34,12 @@ function BookCard(props) {
                 <Card.Text>
                     {props.shortDescription}
                 </Card.Text>
+                <Card.Text>
+                    ${props.price}
+                </Card.Text>
+                <Card.Text>
+                    {props.author}
+                </Card.Text>
                 <i class="fas fa-cart-plus" onClick={() => sendToCart(props.id)}></i>
                 <Button variant="primary" onClick={showBookDetails}>More details</Button>
             </Card.Body>

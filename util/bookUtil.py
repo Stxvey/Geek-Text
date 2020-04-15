@@ -19,7 +19,7 @@ cnx = mysql.connector.connect(
 cur = cnx.cursor()
 class Book:
     id = 0
-    def __init__(self, title, isbn, genre="", price=0, pageCount=350, author="", shortDescription=shortDesc, longDescription=longDesc, publisher="", thumbnail="", publishedDate=""):
+    def __init__(self, title, isbn, genre="", price=0, pageCount=350, author="", shortDescription=shortDesc, longDescription=longDesc, publisher="", thumbnail="", publishedDate="", isTopSeller=1, rate=3):
         self.title = title
         self.isbn = isbn
         self.genre = genre
@@ -31,9 +31,11 @@ class Book:
         self.publishedDate = publishedDate
         self.shortDescription = shortDescription
         self.longDescription = longDescription
+        self.isTopSeller = random.getrandbits(1)
+        self.rate = random.randint(1, 5)
     
     def writeToDb(self, cur):
-        query = f"INSERT INTO book (title, isbn, pageCount, shortDescription, longDescription, genre, author, price, publisher, thumbnail, publishedDate) VALUES (\"{self.title}\", \"{self.isbn}\", {self.pageCount}, \"{self.shortDescription}\", \"{self.longDescription}\", \"{self.genre}\", \"{self.author}\", {self.price}, \"{self.publisher}\", \"{self.thumbnail}\", \"{self.publishedDate}\");"
+        query = f"INSERT INTO book (title, isbn, pageCount, shortDescription, longDescription, genre, author, price, publisher, thumbnail, publishedDate, isTopSeller, rate) VALUES (\"{self.title}\", \"{self.isbn}\", {self.pageCount}, \"{self.shortDescription}\", \"{self.longDescription}\", \"{self.genre}\", \"{self.author}\", {self.price}, \"{self.publisher}\", \"{self.thumbnail}\", \"{self.publishedDate}\", \"{self.isTopSeller}\", \"{self.rate}\");"
         cur.execute(query)
 
 with open(bookFile) as json_file:

@@ -12,7 +12,7 @@ const creditcardController = require('../controllers/creditcard')
 router.get('/books/all', bookController.getAllBooks)
 router.get('/book/getTop', bookController.getTop)
 router.post('/book/getGenre', bookController.getGenre)
-router.get('/book/getRating', bookController.getRating)
+router.post('/book/getRating', bookController.getRating)
 router.post('/book/getSort', bookController.getSort)
 
 //User Routes

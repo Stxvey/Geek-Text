@@ -9,6 +9,7 @@ function BookContainer() {
 
     function setLimit(i){
         bookLimit = i
+        bookList.splice(0,bookLimit)
     }
     function browseTop(){
         fetch('/book/getTop')
